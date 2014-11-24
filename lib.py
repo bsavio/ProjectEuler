@@ -1,5 +1,6 @@
 from math import sqrt, ceil
 
+
 def is_even(n):
     return n % 2 == 0
 
@@ -55,8 +56,7 @@ def is_prime(n):
     """
     if n <= 2 or is_even(n):
         return n == 2
-    limit = ceil(sqrt(n))
-    for x in iterate_odd(limit - 3, range(3, limit)):
+    for x in range(3,  int(sqrt(n)) + 1, 2):
         if n % x == 0:
             return False
     return True
