@@ -104,3 +104,48 @@ def primitive_pythagorean_triples():
         for n in range(1, m):
             yield [m**2 - n**2, 2*m*n, m**2 + n**2]
         m += 1
+
+
+def triangular_numbers():
+    """
+    Iterates all triangular numbers
+    """
+    n = 1
+    result = 0
+    while True:
+        result += n
+        yield result
+        n += 1
+
+
+def get_divisors(x):
+    """
+    Gets all divisors of x
+    :param x:
+    :return:
+    """
+    divs = [1, x]  # Counting 1 and x as divisors
+    max_n = int(sqrt(x))
+    if max_n == sqrt(x):
+        divs.append(max_n)
+    for n in range(2, max_n):
+        if x % n == 0:
+            divs.append(n)
+            divs.append(int(x/n))
+    return divs
+
+
+def count_divisors(x):
+    """
+    Counts all divisors of x
+    :param x:
+    :return:
+    """
+    div_count = 2  # Counting 1 and x as divisors
+    max_n = int(sqrt(x))
+    if max_n == sqrt(x):
+        div_count += 1
+    for n in range(2, max_n):
+        if x % n == 0:
+            div_count += 2
+    return div_count
