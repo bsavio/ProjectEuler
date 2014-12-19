@@ -149,3 +149,20 @@ def count_divisors(x):
         if x % n == 0:
             div_count += 2
     return div_count
+
+
+def collatz_seq(n):
+    """
+    Iterates through the Collatz Sequence
+        n → n/2 (n is even)
+        n → 3n + 1 (n is odd)
+    :param n: Start of the sequence
+    """
+    while n >= 1:
+        yield int(n)
+        if n == 1:
+            n = 0
+        elif is_even(n):
+            n /= 2
+        else:
+            n = 3*n + 1
