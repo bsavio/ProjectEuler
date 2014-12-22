@@ -166,3 +166,26 @@ def collatz_seq(n):
             n /= 2
         else:
             n = 3*n + 1
+
+
+def factorial(n):
+    """
+    Calculates n!
+    :param n:
+    :return:
+    """
+    for i in range(1, n):
+        n *= i
+    return n
+
+
+def combinations(n, k):
+    """
+    Calculates the number of combinations of choosing k of n elements
+    :param n:
+    :param k:
+    :return:
+    """
+    if k == 0 or n == k:
+        return 1
+    return factorial(n) / (factorial(k) * factorial(n - k))
