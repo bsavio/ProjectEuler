@@ -40,12 +40,10 @@ def print_triangle(triangle_to_print):
         print(row)
 
 
-def consolidate_triangle_rows(larger_row, shorter_row):
+def consolidate_triangle_rows(shorter_row, larger_row):
     result_row = []
-    i = 0
-    while i < len(shorter_row):
-        result_row.append(max(shorter_row[i] + larger_row[i], shorter_row[i] + larger_row[i+1]))
-        i += 1
+    for j in range(0, len(shorter_row)):
+        result_row.append(max(shorter_row[j] + larger_row[j], shorter_row[j] + larger_row[j+1]))
     return result_row
 
 
@@ -56,7 +54,7 @@ def find_largest_triangle_path_sum(triangle):
         del triangle[-1]
         print_triangle(triangle)
         print()
-    return triangle[0]
+    return triangle[0][0]
 
 
 large_triangle = [
