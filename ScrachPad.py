@@ -1,4 +1,2 @@
-
-n = 5
-for i in range(1, 5):
-    print(i)
+print(2000 % 4)
+print(2000 % 400)
