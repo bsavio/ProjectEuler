@@ -118,13 +118,16 @@ def triangular_numbers():
         n += 1
 
 
-def get_divisors(x):
+def get_divisors(x, include_x=True):
     """
     Gets all divisors of x
     :param x:
+    :param include_x: Defaults to true
     :return:
     """
-    divs = [1, x]  # Counting 1 and x as divisors
+    divs = [1]  # Include 1 as a divisor
+    if include_x:
+        divs.append(x) # Include x as a divisor
     max_n = int(sqrt(x))
     if max_n == sqrt(x):
         divs.append(max_n)
@@ -135,13 +138,14 @@ def get_divisors(x):
     return divs
 
 
-def count_divisors(x):
+def count_divisors(x, include_x=True):
     """
     Counts all divisors of x
     :param x:
+    :param include_x: Defaults to true
     :return:
     """
-    div_count = 2  # Counting 1 and x as divisors
+    div_count = 1 + int(include_x)  # Counting 1 as a divisor and x if include_x is true
     max_n = int(sqrt(x))
     if max_n == sqrt(x):
         div_count += 1
