@@ -126,11 +126,15 @@ def get_divisors(x, include_x=True):
     :return:
     """
     divs = [1]  # Include 1 as a divisor
-    if include_x:
-        divs.append(x) # Include x as a divisor
+    if include_x and x != 1:
+        divs.append(x)  # Include x as a divisor
+    if x <= 2:
+        return divs
     max_n = int(sqrt(x))
     if max_n == sqrt(x):
         divs.append(max_n)
+    else:
+        max_n += 1
     for n in range(2, max_n):
         if x % n == 0:
             divs.append(n)
@@ -149,6 +153,8 @@ def count_divisors(x, include_x=True):
     max_n = int(sqrt(x))
     if max_n == sqrt(x):
         div_count += 1
+    else:
+        max_n += 1
     for n in range(2, max_n):
         if x % n == 0:
             div_count += 2
@@ -193,3 +199,18 @@ def combinations(n, k):
     if k == 0 or n == k:
         return 1
     return factorial(n) / (factorial(k) * factorial(n - k))
+
+
+def check_perfect_abundant_deficient(n):
+    """
+    Determines if a number is deficient, perfect or abundant.
+    :param n:
+    :return: 1 if abundant, 0 if perfect and -1 if deficient
+    """
+    sum_of_divisors = sum(get_divisors(n, False))
+    if sum_of_divisors < n:
+        return -1
+    if sum_of_divisors == n:
+        return 0
+    if sum_of_divisors > n:
+        return 1
