@@ -214,3 +214,18 @@ def check_perfect_abundant_deficient(n):
         return 0
     if sum_of_divisors > n:
         return 1
+
+
+def swap_elements(iterable, i, j):
+    """
+    Swaps element of the list at index i with the element at index j
+    :param iterable: list
+    :type iterable: list
+    :param i: index to swap
+    :type i: int
+    :param j: index to swap
+    :type j: int
+    """
+    t = iterable[i]
+    iterable[i] = iterable[j]
+    iterable[j] = t
