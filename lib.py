@@ -12,11 +12,10 @@ def is_odd(n):
 def fibonacci_seq():
     """
     Iterates the Fibonacci Sequence
-
     """
     a, b = 0, 1
-    while 1:
-        yield a
+    while True:
+        yield b
         a, b = b, a + b
 
 
