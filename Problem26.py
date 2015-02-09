@@ -16,29 +16,34 @@ Where 0.1(6) means 0.166666... and has a 1-digit recurring cycle. It can be seen
 Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.
 """
 
-import re
 
-max_rep = 0
-d = 0
-for i in range(1, 1000):
-    num = str(round(1/i, 100))
-    midway = int(len(num)/2)
-    if midway < max_rep:
-        continue
-    i_min_rep = 0
-    for j in range(1, int(len(num)/2)):
-        regex = '(\d{' + str(j) + '})\\1+'
-        if re.search(regex, num) is not None:
-            i_min_rep = j
+def divide(numerator, denominator):
+    num_result = numerator // denominator
+    numerator = 10 * (numerator - num_result * denominator)
+    result = str(num_result)
+    if numerator == 0:
+        return result
+    result += '.'
+    states = {}
+    while numerator > 0:
+        previous_state = states.get(numerator, None)
+        if previous_state is not None:
+            result = 'r' + result
             break
-    if i_min_rep > max_rep:
-        max_rep = j
-        d = i
-        print(num)
-        print(max_rep)
-        print(d)
-        print()
+        states[numerator] = len(result)
+        num_result = numerator // denominator
+        numerator = 10 * (numerator - num_result * denominator)
+        result += str(num_result)
+    return result
 
-print('----------')
-print(max_rep)
-print(d)
+
+max_d = 0
+max_len = 0
+for i in range(1, 1000):
+    test = divide(1, i)
+    if test[0] == 'r' and len(test) > max_len:
+        max_d = i
+        max_len = len(test)
+
+print(max_d)
+print(divide(1, max_d))

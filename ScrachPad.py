@@ -9,10 +9,4 @@
 # # (?<rep>\d{6})(?:\k<rep>)
 # print(x)
 
-mlen = 0
-for i in range(1, 10):
-    print(i)
-
-for i in reversed(range(1, 10)):
-    print(i)
 
