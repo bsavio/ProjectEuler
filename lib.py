@@ -1,4 +1,4 @@
-from math import sqrt, ceil
+from math import sqrt, log
 
 
 def is_even(n):
@@ -61,6 +61,24 @@ def is_prime(n):
     return True
 
 
+def get_primes_in_range(a, b):
+    """
+    Get's a list of all primes inclusively in the range [a, b]
+    :param a:
+    :param b:
+    :return:
+    """
+    primes = []
+    if a % 2 == 0:
+        if a == 2:
+            primes.append(2)
+        a += 1
+    for n in range(a, b + 1, 2):
+        if is_prime(n):
+            primes.append(n)
+    return primes
+
+
 def find_pythagorean_triplet(a, b, c, perimeter):
     """
     Finds the the pythagorean triplet for the given perimeter.
@@ -101,7 +119,7 @@ def primitive_pythagorean_triples():
     m = 2
     while True:
         for n in range(1, m):
-            yield [m**2 - n**2, 2*m*n, m**2 + n**2]
+            yield [m ** 2 - n ** 2, 2 * m * n, m ** 2 + n ** 2]
         m += 1
 
 
@@ -137,7 +155,7 @@ def get_divisors(x, include_x=True):
     for n in range(2, max_n):
         if x % n == 0:
             divs.append(n)
-            divs.append(int(x/n))
+            divs.append(int(x / n))
     return divs
 
 
@@ -174,7 +192,7 @@ def collatz_seq(n):
         elif is_even(n):
             n /= 2
         else:
-            n = 3*n + 1
+            n = 3 * n + 1
 
 
 def factorial(n):
@@ -228,3 +246,35 @@ def swap_elements(iterable, i, j):
     t = iterable[i]
     iterable[i] = iterable[j]
     iterable[j] = t
+
+
+def is_perfect_power(n, primes=None):
+    """
+    Test if n is a perfect power. (n = a^b).
+    :param n:
+    :param primes: an optional list of primes.  It builds the list if not supplied.
+    :return: If a perfect power then returns the smallest prime p such that n = a^p else 0
+    """
+    max_p = max(log(n), 2)
+    if primes is None:
+        get_primes_in_range(2, max_p)
+    for p in primes:
+        if p > max_p:
+            break
+        x = n ** (1/p)
+        if n == x**p:
+            return p
+    return 0
+
+
+def number_to_digits(n):
+    """
+    Converts a number into a list of it's digits
+    :rtype : list
+    :param n:
+    :return: a list of digits of n
+    """
+    results = []
+    for digit in str(n):
+        results.append(int(digit))
+    return results
