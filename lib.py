@@ -278,3 +278,32 @@ def number_to_digits(n):
     for digit in str(n):
         results.append(int(digit))
     return results
+
+
+def lexicographic_permutations(to_permute):
+    """
+    Generates lexicographic permutations
+    :param to_permute:
+    :return:
+    """
+    while True:
+        yield to_permute
+        k = -1
+        # Find the right most index k such that to_permute[k} < to_permute[k+1]
+        for i in reversed(range(0, len(to_permute) - 1)):
+            if to_permute[i] < to_permute[i + 1]:
+                k = i
+                break
+        #  If we found no such k then the permutations are complete
+        if k == -1:
+            return
+        # Find the largest l such that to_compute[k] < to_compute[l]
+        l = k
+        for i in reversed(range(k + 1, len(to_permute))):  # to_permute[k+1:]:
+            if to_permute[l] < to_permute[i]:
+                l = i
+                break
+        #  Swap elements k and l
+        swap_elements(to_permute, k, l)
+        #  Reverse the order of the elements K+1 to n
+        to_permute = to_permute[:k + 1] + to_permute[:k:-1]
