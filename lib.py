@@ -9,6 +9,15 @@ def is_odd(n):
     return n % 2 == 1
 
 
+def iterate_integer_digits(n):
+    """
+    Iterates digits of intergers
+    :param n:
+    """
+    for d in str(n):
+        yield int(d)
+
+
 def fibonacci_seq():
     """
     Iterates the Fibonacci Sequence
@@ -307,3 +316,9 @@ def lexicographic_permutations(to_permute):
         swap_elements(to_permute, k, l)
         #  Reverse the order of the elements K+1 to n
         to_permute = to_permute[:k + 1] + to_permute[:k:-1]
+
+
+def gcd(u, v):
+    while v:
+        u, v = v, u % v
+    return abs(u)
