@@ -1,5 +1,12 @@
-from lib import lexicographic_permutations
+def iterate_integer_digits(n):
+    """
+    Iterates digits of integers
+    :param n:
+    """
+    while n > 0:
+        yield n % 10
+        n = int(n/10)
 
-for perm in lexicographic_permutations([1, 2, 3, 4]):
-    print(perm)
 
+for d in iterate_integer_digits(12345):
+    print(d)

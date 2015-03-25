@@ -11,11 +11,12 @@ def is_odd(n):
 
 def iterate_integer_digits(n):
     """
-    Iterates digits of intergers
+    Iterates digits of integers
     :param n:
     """
-    for d in str(n):
-        yield int(d)
+    while n > 0:
+        yield n % 10
+        n //= 10
 
 
 def fibonacci_seq():
