@@ -1,12 +1,6 @@
-def iterate_integer_digits(n):
-    """
-    Iterates digits of integers
-    :param n:
-    """
-    while n > 0:
-        yield n % 10
-        n = int(n/10)
-
-
-for d in iterate_integer_digits(12345):
-    print(d)
+i = 12345
+i_length = len(str(i))
+n = i
+for x in range(i_length):
+    print(n)
+    n = (n % 10 * 10 ** (i_length-1)) + (n // 10)

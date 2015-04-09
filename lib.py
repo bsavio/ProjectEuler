@@ -63,7 +63,7 @@ def is_prime(n):
     :param n: the number to check
     :return: True if prime, False otherwise
     """
-    if n <= 2 or is_even(n):
+    if n <= 2 or n % 2 == 0:
         return n == 2
     for x in range(3, int(sqrt(n)) + 1, 2):
         if n % x == 0:
@@ -280,14 +280,29 @@ def is_perfect_power(n, primes=None):
 def number_to_digits(n):
     """
     Converts a number into a list of it's digits
-    :rtype : list
     :param n:
+    :rtype : list
     :return: a list of digits of n
     """
     results = []
-    for digit in str(n):
-        results.append(int(digit))
+    while n > 0:
+        results.append(n % 10)
+        n //= 10
     return results
+
+
+def digits_to_number(digits):
+    """
+    Converts a list of digits to a number
+    :param digits:
+    :return:
+    """
+    place_multiplier = 1
+    number = 0
+    for digit in reversed(digits):
+        number += digit * place_multiplier
+        place_multiplier *= 10
+    return number
 
 
 def lexicographic_permutations(to_permute):
