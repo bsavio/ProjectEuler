@@ -1,6 +1,14 @@
-i = 12345
-i_length = len(str(i))
-n = i
-for x in range(i_length):
-    print(n)
-    n = (n % 10 * 10 ** (i_length-1)) + (n // 10)
+def is_palindromic(digits):
+    count = len(digits) - 1
+    n = count
+    while n >= count // 2:
+        if digits[n] != digits[count - n]:
+            return False
+        n -= 1
+    return True
+
+
+x = [1, 0, 1]
+print(x == x[::-1])
+x = [2, 1, 0, 1]
+print(x[::-1])
