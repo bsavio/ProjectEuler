@@ -71,6 +71,21 @@ def is_prime(n):
     return True
 
 
+def is_prime_cached(n, primes):
+    """
+    Checks if a number is prime. Caches primes found in primes
+    :param n: the number to check
+    :param primes: list of known primes
+    :return: True if prime, False otherwise
+    """
+    if n in primes:
+        return True
+    if is_prime(n):
+        primes.append(n)
+        return True
+    return False
+
+
 def get_primes_in_range(a, b):
     """
     Get's a list of all primes inclusively in the range [a, b]
@@ -299,7 +314,7 @@ def digits_to_number(digits):
     """
     place_multiplier = 1
     number = 0
-    for digit in reversed(digits):
+    for digit in digits:
         number += digit * place_multiplier
         place_multiplier *= 10
     return number
