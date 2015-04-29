@@ -3,6 +3,7 @@
 """
 
 from timeit import default_timer
+import lib
 
 
 def main():
