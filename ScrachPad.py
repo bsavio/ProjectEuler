@@ -1,9 +1,7 @@
 import lib
 
-
-
-primes = []
-print(lib.is_prime_cached(2, primes))
-print(primes)
-print(lib.is_prime_cached(2, primes))
-print(primes)
+for x in lib.pentagonal_numbers():
+    print(x)
+    print(lib.is_pentagonal(x))
+    if x >= 145:
+        break

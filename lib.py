@@ -29,6 +29,25 @@ def fibonacci_seq():
         a, b = b, a + b
 
 
+def pentagonal_numbers():
+    """
+    Generates pentagonal numbers
+    """
+    n = 1
+    while True:
+        yield (3 * (n ** 2) - n) / 2
+        n += 1
+
+
+def is_pentagonal(x):
+    """
+    Test if x is a pentagonal number
+    :param x: The number to test
+    :return: if it's a pentagonal number then true else false
+    """
+    return ((((24 * x + 1) ** 0.5) + 1) / 6).is_integer()
+
+
 def iterate_even(n, iterable):
     """
     Iterates only n even numbers from the iterable
